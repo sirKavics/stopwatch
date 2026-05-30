@@ -55,3 +55,31 @@
 
 // PRACTICE RUN
 
+const timerMilliseconds = document.querySelector('.timer__milliseconds');
+const timerSeconds = document.querySelector('.timer__seconds');
+const timerMinutes = document.querySelector('.timer__minutes');
+
+let cancelId;
+let startTime;
+
+function startTimer() {
+    startTime = Date.now();
+    console.log(startTime)
+    cancelId = requestAnimationFrame(updateTimer)
+}
+
+function stopTimer() {
+    console.log("stop")
+    cancelAnimationFrame(cancelId)
+}
+
+function resetTimer() {
+    console.log("reset")
+}
+
+function updateTimer() {
+    console.log('updateTimer()');
+    cancelId  = requestAnimationFrame(updateTimer);
+
+    let millisElapsed = Date.now() - startTime;
+}
