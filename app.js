@@ -78,8 +78,27 @@ function resetTimer() {
 }
 
 function updateTimer() {
-    console.log('updateTimer()');
     cancelId  = requestAnimationFrame(updateTimer);
 
     let millisElapsed = Date.now() - startTime;
+    let secondsElapsed = millisElapsed / 1000;
+    let minutesElapsed = secondsElapsed / 60;
+
+    let millisFormat = millisElapsed % 1000;
+    let secondsFormat = Math.floor(secondsElapsed % 60);
+    let minutesFormat = Math.floor(minutesElapsed);
+
+    if (millisFormat.toString().length < 3) {
+        millisFormat = millisFormat.toString().padStart(3, "0");
+    }
+    if (secondsFormat.toString().length < 2) {
+        secondsFormat = "0" + secondsFormat;
+    }
+    if (minutesFormat.toString().length < 2) {
+        minutesFormat = "0" + minutesFormat;
+    }
+
+    timerMilliseconds.innerHTML = millisFormat;
+    timerSeconds.innerHTML = secondsFormat;
+    timerMinutes.innerHTML = minutesFormat;
 }
