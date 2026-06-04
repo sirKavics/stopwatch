@@ -61,26 +61,28 @@ const timerMinutes = document.querySelector('.timer__minutes');
 
 let cancelId;
 let startTime;
+let savedTime = 0;
 
 function startTimer() {
     startTime = Date.now();
-    console.log(startTime)
     cancelId = requestAnimationFrame(updateTimer)
 }
 
 function stopTimer() {
-    console.log("stop")
+    savedTime = savedTime + Date.now() - startTime;
+    console.log(savedTime)
     cancelAnimationFrame(cancelId)
 }
 
 function resetTimer() {
-    console.log("reset")
+
 }
+
 
 function updateTimer() {
     cancelId  = requestAnimationFrame(updateTimer);
 
-    let millisElapsed = Date.now() - startTime;
+    let millisElapsed = savedTime + Date.now() - startTime;
     let secondsElapsed = millisElapsed / 1000;
     let minutesElapsed = secondsElapsed / 60;
 
